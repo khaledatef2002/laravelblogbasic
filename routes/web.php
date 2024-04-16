@@ -10,8 +10,6 @@ Route::controller(ThemeController::class)->name('theme.')->group(function () {
     Route::get('/contact', 'contact')->name('contact');
     Route::get('/categories', 'categories')->name('categories');
     Route::get('/blog', 'blog')->name('blog');
-    Route::get('/login', 'login')->name('login');
-    Route::get('/register', 'register')->name('register');
 });
 
 Route::get('/dashboard', function () {

@@ -28,9 +28,24 @@
             <!-- Add new blog -->
             <a href="#" class="btn btn-sm btn-primary mr-2">Add New</a>
             <!-- End - Add new blog -->
-
-              <a href="{{route('theme.login')}}" class="btn btn-sm btn-warning mr-2">Login</a>
-              <a href="{{route('theme.register')}}" class="btn btn-sm btn-danger">Register</a>
+            @if (!Auth::check())
+              <a href="{{route('login')}}" class="btn btn-sm btn-warning mr-2">Login</a>
+              <a href="{{route('register')}}" class="btn btn-sm btn-danger">Register</a>
+            @else
+              <li class="nav-item submenu dropdown" style="list-style: none">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">{{Auth::user()->name}}</a>
+                <ul class="dropdown-menu">
+                  <li class="nav-item"><a class="nav-link" href="blog-details.html">My Blogs</a></li>
+                  <li class="nav-item">
+                    <form action="{{route('logout')}}" method="post">
+                      @csrf
+                      <button type="submit" class="nav-link" style="background:transparent;color: blue;border:0">Logout</button>
+                    </form>
+                  </li>
+                </ul>
+              </li>
+            @endif
           </div> 
         </div>
       </nav>
