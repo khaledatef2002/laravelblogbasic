@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ThemeController extends Controller
@@ -24,15 +25,5 @@ class ThemeController extends Controller
     public function blog()
     {
         return view('theme.blog');
-    }
-
-    public function login()
-    {
-        return view('theme.login');
-    }
-
-    public function register()
-    {
-        return view('theme.register');
     }
 }

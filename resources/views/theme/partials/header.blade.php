@@ -1,3 +1,7 @@
+@php
+  use App\Models\Category;
+  $categories = Category::get();
+@endphp
 <header class="header_area">
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
@@ -17,9 +21,9 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Categories</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="{{ route('theme.categories') }}">Food</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{{ route('theme.categories') }}">Bussiness</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{{ route('theme.categories') }}">Travel</a></li>
+                  @foreach ($categories as $category)
+                  <li class="nav-item"><a class="nav-link" href="{{ route('theme.categories') }}">{{$category->name}}</a></li>
+                  @endforeach
                 </ul>
               </li>
               <li class="nav-item @yield('contact active')"><a class="nav-link" href="{{ route('theme.contact') }}">Contact</a></li>
