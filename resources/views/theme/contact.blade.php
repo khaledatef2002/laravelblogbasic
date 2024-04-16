@@ -36,17 +36,30 @@
         </div>
       </div>
       <div class="col-md-8 col-lg-9">
-        <form action="#/" class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+        <form action="{{ route('contact.store') }}" class="form-contact contact_form" method="post" id="contactForm">
+          @csrf
+          @if (session('contact-status'))
+              <div class="alert alert-success">{{ session('contact-status') }}</div>
+          @endif
           <div class="row">
             <div class="col-lg-5">
               <div class="form-group">
-                <input class="form-control" name="name" id="name" type="text" placeholder="Enter your name">
+                <input value="{{old('name')}}" class="form-control" name="name" id="name" type="text" placeholder="Enter your name">
+                @error('name')
+                  <div class="text-danger">*{{ $message }}</div>
+                @enderror
               </div>
               <div class="form-group">
-                <input class="form-control" name="email" id="email" type="email" placeholder="Enter email address">
+                <input value="{{old('email')}}" class="form-control" name="email" id="email" type="email" placeholder="Enter email address">
+                @error('email')
+                  <div class="text-danger">*{{ $message }}</div>
+                @enderror
               </div>
               <div class="form-group">
-                <input class="form-control" name="subject" id="subject" type="text" placeholder="Enter Subject">
+                <input value="{{old('subject')}}" class="form-control" name="subject" id="subject" type="text" placeholder="Enter Subject">
+                @error('subject')
+                  <div class="text-danger">*{{ $message }}</div>
+                @enderror
               </div>
             </div>
             <div class="col-lg-7">
