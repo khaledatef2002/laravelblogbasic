@@ -29,8 +29,11 @@
               <li class="nav-item @yield('contact active')"><a class="nav-link" href="{{ route('theme.contact') }}">Contact</a></li>
             </ul>
             
+            @if (Auth::check())
             <!-- Add new blog -->
-            <a href="#" class="btn btn-sm btn-primary mr-2">Add New</a>
+            <a href="{{ route('blogs.create') }}" class="btn btn-sm btn-primary mr-2">Add New</a>
+            @endif
+            
             <!-- End - Add new blog -->
             @if (!Auth::check())
               <a href="{{route('login')}}" class="btn btn-sm btn-warning mr-2">Login</a>

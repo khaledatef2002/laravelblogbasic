@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,8 @@ class ThemeController extends Controller
 {
     public function home()
     {
-        return view('theme.home');
+        $blogs = Blog::paginate(4);
+        return view('theme.home', compact('blogs'));
     }
 
     public function categories()

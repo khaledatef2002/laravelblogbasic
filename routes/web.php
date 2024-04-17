@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProfileController;
@@ -16,6 +17,8 @@ Route::controller(ThemeController::class)->name('theme.')->group(function () {
 
 Route::post('/subscribe/create', [SubscriberController::class, 'store'])->name('subscrive.store');
 Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
+
+Route::resource('blogs', BlogController::class)->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
