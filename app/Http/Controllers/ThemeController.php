@@ -14,18 +14,15 @@ class ThemeController extends Controller
         return view('theme.home', compact('blogs'));
     }
 
-    public function categories()
+    public function categories($id)
     {
-        return view('theme.categories');
+        $blogs = Blog::where("category_id", $id)->paginate(8);
+        $category_name = Category::find($id)->name;
+        return view('theme.categories', compact('blogs', 'category_name'));
     }
 
     public function contact()
     {
         return view('theme.contact');
-    }
-
-    public function blog()
-    {
-        return view('theme.blog');
     }
 }
